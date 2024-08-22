@@ -26,6 +26,7 @@ docker-commons/1.15
 durable-task/493.v195aefbb0ff2
 durable-task/496.va67c6f9eefa7
 echarts-api/5.3.3-1
+font-awesome-api/6.1.2-1
 git-client/3.11.0
 google-oauth-plugin/0.8
 handlebars/3.0.8
@@ -70,6 +71,7 @@ plain-credentials/1.4
 plain-credentials/1.6
 plain-credentials/1.7
 plugin-util-api/2.17.0
+popper-api/1.16.1-2
 promoted-builds/3.10.1
 scm-api/595.vd5a_df5eb_0e39
 scm-api/602.v6a_81757a_31d2
