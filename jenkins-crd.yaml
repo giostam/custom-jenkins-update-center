@@ -1,0 +1,460 @@
+apiVersion: jenkins.io/v1alpha2
+kind: Jenkins
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"jenkins.io/v1alpha2","kind":"Jenkins","metadata":{"annotations":{"meta.helm.sh/release-name":"jenkins-operator","meta.helm.sh/release-namespace":"jenkins-operator"},"creationTimestamp":"2022-10-31T22:38:42Z","generation":125,"labels":{"app.kubernetes.io/managed-by":"Helm","k8slens-edit-resource-version":"v1alpha2"},"name":"jenkins","namespace":"jenkins","resourceVersion":"291514163","uid":"65588ae4-3649-45bb-868d-0e953aa8a0fd"},"spec":{"backup":{"action":{"exec":{"command":["/home/user/bin/backup.sh"]}},"containerName":"backup","interval":43200,"makeBackupBeforePodDeletion":true},"configurationAsCode":{"configurations":[{"name":"jenkins-casc"}],"secret":{"name":""}},"groovyScripts":{"configurations":[],"secret":{"name":""}},"jenkinsAPISettings":{"authorizationStrategy":"createUser"},"master":{"basePlugins":[{"name":"configuration-as-code","version":"1429.v09b_044a_c93de"},{"name":"git","version":"4.11.3"},{"name":"job-dsl","version":"1.77"},{"name":"kubernetes-credentials-provider","version":"0.20"},{"name":"kubernetes-credentials","version":"0.9.0"},{"name":"kubernetes-client-api","version":"5.12.1-187.v577c3e368fb_6"},{"name":"snakeyaml-api","version":"1.30.1"},{"name":"git-client","version":"3.11.0"},{"name":"gradle","version":"1.15"},{"name":"workflow-durable-task-step","version":"1139.v252a_e12e8463"},{"name":"credentials","version":"1087.1089.v2f1b_9a_b_040e4"},{"name":"kubernetes","version":"3622.va_9dc5592b_10c"},{"name":"workflow-aggregator","version":"581.v0c46fa_697ffd"},{"name":"workflow-job","version":"1186.v8def1a_5f3944"},{"name":"workflow-basic-steps","version":"948.v2c72a_091b_b_68"},{"name":"workflow-support","version":"820.vd1a_6cc65ef33"},{"name":"command-launcher","version":"84.v4a_97f2027398"},{"name":"jdk-tool","version":"1.5"},{"name":"pipeline-model-definition","version":"2.2086.v12b_420f036e5"},{"name":"pipeline-model-api","version":"2.2086.v12b_420f036e5"},{"name":"pipeline-stage-tags-metadata","version":"2.2086.v12b_420f036e5"},{"name":"workflow-cps","version":"2725.v7b_c717eb_12ce"},{"name":"sshd","version":"3.237.v883d165a_c1d3"},{"name":"metrics","version":"4.1.6.2"},{"name":"maven-plugin","version":"3.22"},{"name":"mailer","version":"414.vcc4c33714601"},{"name":"pipeline-stage-view","version":"2.24"},{"name":"pipeline-stage-step","version":"293.v200037eefcd5"},{"name":"popper2-api","version":"2.11.6-1"},{"name":"jquery3-api","version":"3.6.1-1"},{"name":"pipeline-groovy-lib","version":"612.v84da_9c54906d"},{"name":"pipeline-rest-api","version":"2.28"},{"name":"trilead-api","version":"1.67.vc3938a_35172f"},{"name":"cloudbees-folder","version":"6.740.ve4f4ffa_dea_54"},{"name":"matrix-project","version":"772.v494f19991984"},{"name":"structs","version":"324.va_f5d6774f3a_d"},{"name":"javax-activation-api","version":"1.2.0-5"},{"name":"javax-mail-api","version":"1.6.2-8"}],"containers":[{"command":["bash","-c","/var/jenkins/scripts/init.sh
+      \u0026\u0026 exec /sbin/tini -s --
+      /usr/local/bin/jenkins.sh"],"env":[{"name":"JAVA_OPTS","value":"-XX:MinRAMPercentage=50.0
+      -XX:MaxRAMPercentage=80.0 -Djenkins.install.runSetupWizard=false
+      -Djava.awt.headless=true
+      -Djavax.net.ssl.trustStorePassword=hJpKFAxMsj5jDrCP
+      -Dhudson.model.DirectoryBrowserSupport.CSP"}],"image":"jenkins/jenkins:2.332.3-lts","imagePullPolicy":"Always","livenessProbe":{"failureThreshold":20,"httpGet":{"path":"/login","port":"http","scheme":"HTTP"},"initialDelaySeconds":100,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":8},"name":"jenkins-master","readinessProbe":{"failureThreshold":60,"httpGet":{"path":"/login","port":"http","scheme":"HTTP"},"initialDelaySeconds":100,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":8},"resources":{"limits":{"cpu":"2","memory":"10000Mi"},"requests":{"cpu":"500m","memory":"10000Mi"}},"volumeMounts":[{"mountPath":"/opt/java/openjdk/lib/security/cacerts","name":"ingress-truststore","subPath":"cacerts.ks"},{"mountPath":"/etc/ssl/certs/ingress-root-ca.pem","name":"ingress-truststore","subPath":"ingress-root-ca.pem"}]},{"env":[{"name":"BACKUP_DIR","value":"/backup"},{"name":"JENKINS_HOME","value":"/jenkins-home"},{"name":"BACKUP_COUNT","value":"3"}],"image":"virtuslab/jenkins-operator-backup-pvc:v0.1.0","imagePullPolicy":"IfNotPresent","name":"backup","resources":{"limits":{"cpu":"400m","memory":"2000Mi"},"requests":{"cpu":"200m","memory":"2000Mi"}},"volumeMounts":[{"mountPath":"/jenkins-home","name":"jenkins-home"},{"mountPath":"/backup","name":"backup"}]}],"disableCSRFProtection":true,"nodeSelector":{"worker-label":"worker-1"},"plugins":[{"name":"role-strategy","version":"488.v0634ce149b_8c"},{"name":"oic-auth","version":"1.8"},{"name":"gitea","version":"1.4.5"},{"name":"pipeline-utility-steps","version":"2.12.2"},{"name":"sonar","version":"2.14"},{"name":"remote-file","version":"1.23"},{"name":"rebuild","version":"1.34"},{"name":"htmlpublisher","version":"1.30"},{"name":"artifactory","version":"3.17.2"},{"name":"dependency-check-jenkins-plugin","version":"5.1.2"},{"name":"file-parameters","version":"205.vf6ce13b_e5dee"},{"name":"scm-api","version":"631.v9143df5b_e4a_a"},{"name":"workflow-api","version":"1164.v760c223ddb_32"},{"name":"caffeine-api","version":"2.9.3-65.v6a_47d0f4d1fe"},{"name":"script-security","version":"1175.v4b_d517d6db_f0"},{"name":"jaxb","version":"2.3.7-1"},{"name":"jackson2-api","version":"2.14.2-319.v37853346a_229"},{"name":"bouncycastle-api","version":"2.27"},{"name":"credentials","version":"1087.1089.v2f1b_9a_b_040e4"},{"name":"pipeline-input-step","version":"466.v6d0a_5df34f81"},{"name":"commons-lang3-api","version":"3.12.0-36.vd97de6465d5b_"},{"name":"apache-httpcomponents-client-4-api","version":"4.5.13-138.v4e7d9a_7b_a_e61"},{"name":"javadoc","version":"226.v71211feb_e7e9"},{"name":"ssh-credentials","version":"277.280.v1e86b_7d0056b_"},{"name":"plugin-util-api","version":"2.17.0"},{"name":"font-awesome-api","version":"6.1.2-1"},{"name":"bootstrap5-api","version":"5.2.0-1"},{"name":"checks-api","version":"1.7.5"},{"name":"display-url-api","version":"2.3.6"},{"name":"echarts-api","version":"5.3.3-1"},{"name":"junit","version":"1119.va_a_5e9068da_d7"},{"name":"token-macro","version":"321.vd7cc1f2a_52c8"},{"name":"pipeline-model-extensions","version":"2.2086.v12b_420f036e5"},{"name":"credentials-binding","version":"523.525.vb_72269281873"},{"name":"variant","version":"59.vf075fe829ccb"},{"name":"branch-api","version":"2.1071.v1a_188a_562481"},{"name":"workflow-multibranch","version":"716.vc692a_e52371b_"},{"name":"durable-task","version":"507.v050055d0cb_dd"},{"name":"pipeline-build-step","version":"488.v8993df156e8d"},{"name":"ant","version":"481.v7b_09e538fcca"},{"name":"config-file-provider","version":"3.10.0"},{"name":"ivy","version":"2.4"},{"name":"jsch","version":"0.2.8-65.v052c39de79b_2"}],"securityContext":{"fsGroup":1000,"runAsUser":1000},"volumes":[{"name":"backup","persistentVolumeClaim":{"claimName":"jenkins-backup"}},{"name":"ingress-truststore","secret":{"defaultMode":420,"secretName":"ingress-root-ca-pem"}}]},"restore":{"action":{"exec":{"command":["/home/user/bin/restore.sh"]}},"containerName":"backup","getLatestAction":{"exec":{"command":["/home/user/bin/get-latest.sh"]}}},"seedJobs":[{"additionalClasspath":"","bitbucketPushTrigger":false,"buildPeriodically":"","credentialID":"gitea-access","credentialType":"usernamePassword","description":"IaC
+      SeedJob","failOnMissingPlugin":false,"githubPushTrigger":false,"id":"iac-seed","ignoreMissingFiles":false,"pollSCM":"","repositoryBranch":"develop","repositoryUrl":"http://gitea-http.gitea.svc.cluster.local:3000/IaC/iac-jenkins-jobs.git","targets":"jobs/**","unstableOnDeprecation":false}],"service":{"port":8080,"type":"ClusterIP"},"serviceAccount":{},"slaveService":{"port":50000,"type":"ClusterIP"}},"status":{"lastBackup":15334,"operatorVersion":"v0.7.0","pendingBackup":15334,"provisionStartTime":"2024-02-08T16:07:21Z","userAndPasswordHash":"WNjFy8Uwn2RdYbEuw3Na6PXa9aGT5Au+0wYJeBKYta0="}}
+    meta.helm.sh/release-name: jenkins-operator
+    meta.helm.sh/release-namespace: jenkins-operator
+  creationTimestamp: '2022-10-31T22:38:42Z'
+  generation: 150
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    k8slens-edit-resource-version: v1alpha2
+  managedFields:
+    - apiVersion: jenkins.io/v1alpha2
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:meta.helm.sh/release-name: {}
+            f:meta.helm.sh/release-namespace: {}
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/managed-by: {}
+        f:spec:
+          .: {}
+          f:backup:
+            .: {}
+            f:action:
+              .: {}
+              f:exec:
+                .: {}
+                f:command: {}
+            f:containerName: {}
+            f:makeBackupBeforePodDeletion: {}
+          f:configurationAsCode:
+            .: {}
+            f:configurations: {}
+            f:secret:
+              .: {}
+              f:name: {}
+          f:groovyScripts:
+            .: {}
+            f:configurations: {}
+            f:secret:
+              .: {}
+              f:name: {}
+          f:jenkinsAPISettings:
+            .: {}
+            f:authorizationStrategy: {}
+          f:master:
+            .: {}
+            f:disableCSRFProtection: {}
+            f:securityContext:
+              .: {}
+              f:fsGroup: {}
+              f:runAsUser: {}
+            f:volumes: {}
+          f:restore:
+            .: {}
+            f:action:
+              .: {}
+              f:exec:
+                .: {}
+                f:command: {}
+            f:containerName: {}
+            f:getLatestAction:
+              .: {}
+              f:exec:
+                .: {}
+                f:command: {}
+      manager: terraform-provider-helm_v2.6.0_x5
+      operation: Update
+      time: '2023-08-31T11:33:22Z'
+    - apiVersion: jenkins.io/v1alpha2
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:spec:
+          f:backup:
+            f:interval: {}
+          f:master:
+            f:nodeSelector:
+              f:worker-label: {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: '2024-02-08T16:11:31Z'
+    - apiVersion: jenkins.io/v1alpha2
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            f:k8slens-edit-resource-version: {}
+        f:spec:
+          f:master:
+            f:basePlugins: {}
+            f:nodeSelector: {}
+            f:plugins: {}
+      manager: node-fetch
+      operation: Update
+      time: '2024-05-13T13:23:44Z'
+    - apiVersion: jenkins.io/v1alpha2
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:lastBackup: {}
+          f:pendingBackup: {}
+          f:provisionStartTime: {}
+      manager: manager
+      operation: Update
+      subresource: status
+      time: '2024-08-21T09:43:39Z'
+    - apiVersion: jenkins.io/v1alpha2
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:master:
+            f:containers: {}
+      manager: dashboard
+      operation: Update
+      time: '2024-08-22T06:11:21Z'
+  name: jenkins
+  namespace: jenkins
+  resourceVersion: '397500991'
+  uid: 65588ae4-3649-45bb-868d-0e953aa8a0fd
+spec:
+  backup:
+    action:
+      exec:
+        command:
+          - /home/user/bin/backup.sh
+    containerName: backup
+    interval: 43200
+    makeBackupBeforePodDeletion: true
+  configurationAsCode:
+    configurations:
+      - name: jenkins-casc
+    secret:
+      name: ''
+  groovyScripts:
+    configurations: []
+    secret:
+      name: ''
+  jenkinsAPISettings:
+    authorizationStrategy: createUser
+  master:
+    basePlugins:
+      - name: configuration-as-code
+        version: 1429.v09b_044a_c93de
+      - name: git
+        version: 4.11.3
+      - name: job-dsl
+        version: '1.77'
+      - name: kubernetes-credentials-provider
+        version: '0.20'
+      - name: kubernetes-credentials
+        version: 0.9.0
+      - name: kubernetes-client-api
+        version: 5.12.1-187.v577c3e368fb_6
+      - name: snakeyaml-api
+        version: 1.30.1
+      - name: git-client
+        version: 3.11.0
+      - name: gradle
+        version: '1.15'
+      - name: workflow-durable-task-step
+        version: 1139.v252a_e12e8463
+      - name: credentials
+        version: 1087.1089.v2f1b_9a_b_040e4
+      - name: kubernetes
+        version: 3622.va_9dc5592b_10c
+      - name: workflow-aggregator
+        version: 581.v0c46fa_697ffd
+      - name: workflow-job
+        version: 1186.v8def1a_5f3944
+      - name: workflow-basic-steps
+        version: 948.v2c72a_091b_b_68
+      - name: workflow-support
+        version: 820.vd1a_6cc65ef33
+      - name: command-launcher
+        version: 84.v4a_97f2027398
+      - name: jdk-tool
+        version: '1.5'
+      - name: pipeline-model-definition
+        version: 2.2086.v12b_420f036e5
+      - name: pipeline-model-api
+        version: 2.2086.v12b_420f036e5
+      - name: pipeline-stage-tags-metadata
+        version: 2.2086.v12b_420f036e5
+      - name: workflow-cps
+        version: 2725.v7b_c717eb_12ce
+      - name: sshd
+        version: 3.237.v883d165a_c1d3
+      - name: metrics
+        version: 4.1.6.2
+      - name: maven-plugin
+        version: '3.22'
+      - name: mailer
+        version: 414.vcc4c33714601
+      - name: pipeline-stage-view
+        version: '2.24'
+      - name: pipeline-stage-step
+        version: 293.v200037eefcd5
+      - name: popper2-api
+        version: 2.11.6-1
+      - name: jquery3-api
+        version: 3.6.1-1
+      - name: pipeline-groovy-lib
+        version: 612.v84da_9c54906d
+      - name: pipeline-rest-api
+        version: '2.28'
+      - name: trilead-api
+        version: 1.67.vc3938a_35172f
+      - name: cloudbees-folder
+        version: 6.740.ve4f4ffa_dea_54
+      - name: matrix-project
+        version: 772.v494f19991984
+      - name: structs
+        version: 324.va_f5d6774f3a_d
+      - name: javax-activation-api
+        version: 1.2.0-5
+      - name: javax-mail-api
+        version: 1.6.2-8
+    containers:
+      - command:
+          - bash
+          - '-c'
+          - >-
+            /var/jenkins/scripts/init.sh && exec /sbin/tini -s --
+            /usr/local/bin/jenkins.sh
+        env:
+          - name: JAVA_OPTS
+            value: >-
+              -XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=80.0
+              -Djenkins.install.runSetupWizard=false -Djava.awt.headless=true
+              -Djavax.net.ssl.trustStorePassword=hJpKFAxMsj5jDrCP
+              -Dhudson.model.DirectoryBrowserSupport.CSP
+          - name: JENKINS_UC
+            value: https://github.com/giostam/custom-jenkins-update-center/raw/main
+        image: jenkins/jenkins:2.332.3-lts
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 20
+          httpGet:
+            path: /login
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 100
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 8
+        name: jenkins-master
+        readinessProbe:
+          failureThreshold: 60
+          httpGet:
+            path: /login
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 100
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 8
+        resources:
+          limits:
+            cpu: '2'
+            memory: 10000Mi
+          requests:
+            cpu: 500m
+            memory: 10000Mi
+        volumeMounts:
+          - mountPath: /opt/java/openjdk/lib/security/cacerts
+            name: ingress-truststore
+            subPath: cacerts.ks
+          - mountPath: /etc/ssl/certs/ingress-root-ca.pem
+            name: ingress-truststore
+            subPath: ingress-root-ca.pem
+      - env:
+          - name: BACKUP_DIR
+            value: /backup
+          - name: JENKINS_HOME
+            value: /jenkins-home
+          - name: BACKUP_COUNT
+            value: '3'
+        image: virtuslab/jenkins-operator-backup-pvc:v0.1.0
+        imagePullPolicy: IfNotPresent
+        name: backup
+        resources:
+          limits:
+            cpu: 400m
+            memory: 3000Mi
+          requests:
+            cpu: 200m
+            memory: 3000Mi
+        volumeMounts:
+          - mountPath: /jenkins-home
+            name: jenkins-home
+          - mountPath: /backup
+            name: backup
+    disableCSRFProtection: true
+    nodeSelector:
+      worker-label: worker-1
+    plugins:
+      - name: role-strategy
+        version: 488.v0634ce149b_8c
+      - name: oic-auth
+        version: '1.8'
+      - name: gitea
+        version: 1.4.5
+      - name: pipeline-utility-steps
+        version: 2.12.2
+      - name: sonar
+        version: '2.14'
+      - name: remote-file
+        version: '1.23'
+      - name: rebuild
+        version: '1.34'
+      - name: htmlpublisher
+        version: '1.30'
+      - name: artifactory
+        version: 3.17.2
+      - name: dependency-check-jenkins-plugin
+        version: 5.1.2
+      - name: file-parameters
+        version: 205.vf6ce13b_e5dee
+      - name: scm-api
+        version: 631.v9143df5b_e4a_a
+      - name: workflow-api
+        version: 1164.v760c223ddb_32
+      - name: caffeine-api
+        version: 2.9.3-65.v6a_47d0f4d1fe
+      - name: script-security
+        version: 1175.v4b_d517d6db_f0
+      - name: jaxb
+        version: 2.3.7-1
+      - name: jackson2-api
+        version: 2.14.2-319.v37853346a_229
+      - name: bouncycastle-api
+        version: '2.27'
+      - name: credentials
+        version: 1087.1089.v2f1b_9a_b_040e4
+      - name: pipeline-input-step
+        version: 466.v6d0a_5df34f81
+      - name: commons-lang3-api
+        version: 3.12.0-36.vd97de6465d5b_
+      - name: apache-httpcomponents-client-4-api
+        version: 4.5.13-138.v4e7d9a_7b_a_e61
+      - name: javadoc
+        version: 226.v71211feb_e7e9
+      - name: ssh-credentials
+        version: 277.280.v1e86b_7d0056b_
+      - name: plugin-util-api
+        version: 2.17.0
+      - name: font-awesome-api
+        version: 6.1.2-1
+      - name: bootstrap5-api
+        version: 5.2.0-1
+      - name: checks-api
+        version: 1.7.5
+      - name: display-url-api
+        version: 2.3.6
+      - name: echarts-api
+        version: 5.3.3-1
+      - name: junit
+        version: 1119.va_a_5e9068da_d7
+      - name: token-macro
+        version: 321.vd7cc1f2a_52c8
+      - name: pipeline-model-extensions
+        version: 2.2086.v12b_420f036e5
+      - name: credentials-binding
+        version: 523.525.vb_72269281873
+      - name: variant
+        version: 59.vf075fe829ccb
+      - name: branch-api
+        version: 2.1071.v1a_188a_562481
+      - name: workflow-multibranch
+        version: 716.vc692a_e52371b_
+      - name: durable-task
+        version: 507.v050055d0cb_dd
+      - name: pipeline-build-step
+        version: 488.v8993df156e8d
+      - name: ant
+        version: 481.v7b_09e538fcca
+      - name: config-file-provider
+        version: 3.10.0
+      - name: ivy
+        version: '2.4'
+      - name: jsch
+        version: 0.2.8-65.v052c39de79b_2
+      - name: pipeline-graph-analysis
+        version: 202.va_d268e64deb_3
+      - name: plain-credentials
+        version: 143.v1b_df8b_d3b_e48
+      - name: workflow-scm-step
+        version: 408.v7d5b_135a_b_d49
+      - name: authentication-tokens
+        version: '1.4'
+      - name: pipeline-milestone-step
+        version: 111.v449306f708b_7
+      - name: handy-uri-templates-2-api
+        version: 2.1.8-22.v77d5b_75e6953
+    securityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+    volumes:
+      - name: backup
+        persistentVolumeClaim:
+          claimName: jenkins-backup
+      - name: ingress-truststore
+        secret:
+          defaultMode: 420
+          secretName: ingress-root-ca-pem
+  restore:
+    action:
+      exec:
+        command:
+          - /home/user/bin/restore.sh
+    containerName: backup
+    getLatestAction:
+      exec:
+        command:
+          - /home/user/bin/get-latest.sh
+  seedJobs:
+    - additionalClasspath: ''
+      bitbucketPushTrigger: false
+      buildPeriodically: ''
+      credentialID: gitea-access
+      credentialType: usernamePassword
+      description: IaC SeedJob
+      failOnMissingPlugin: false
+      githubPushTrigger: false
+      id: iac-seed
+      ignoreMissingFiles: false
+      pollSCM: ''
+      repositoryBranch: develop
+      repositoryUrl: http://gitea-http.gitea.svc.cluster.local:3000/IaC/iac-jenkins-jobs.git
+      targets: jobs/**
+      unstableOnDeprecation: false
+  service:
+    port: 8080
+    type: ClusterIP
+  serviceAccount: {}
+  slaveService:
+    port: 50000
+    type: ClusterIP
+status:
+  lastBackup: 15560
+  operatorVersion: v0.7.0
+  pendingBackup: 15560
+  provisionStartTime: '2024-08-22T18:33:26Z'
+  userAndPasswordHash: WNjFy8Uwn2RdYbEuw3Na6PXa9aGT5Au+0wYJeBKYta0=
