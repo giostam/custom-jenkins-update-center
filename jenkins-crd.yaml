@@ -247,6 +247,8 @@ spec:
               -Dhudson.model.DirectoryBrowserSupport.CSP
           - name: JENKINS_UC
             value: https://github.com/giostam/custom-jenkins-update-center/raw/main
+          - name: JENKINS_UC_DOWNLOAD
+            value: https://github.com/giostam/custom-jenkins-update-center/raw/main/download
         image: jenkins/jenkins:2.332.3-lts
         imagePullPolicy: Always
         livenessProbe:
